@@ -59,24 +59,49 @@ cd turbocharger-procast-demo
 ./start.sh
 
 # Access at http://localhost:8080/
-# Or via nginx proxy at https://praneet.exe.xyz:8000/procast/
 ```
 
-### 5. Deploy to exe.xyz Server
+### 5. Deploy to exe.dev Cloud VM (Recommended for Public Access)
 ```bash
-# Copy nginx config to enable proxy
-sudo cp deploy/nginx-procast.conf /etc/nginx/sites-enabled/
+# SSH into your exe.dev VM
+ssh your-vm-name.exe.xyz
 
-# Reload nginx
-sudo nginx -s reload
+# Clone or copy the repository to the VM
+git clone https://github.com/praneetakapunu/procast-ai-automation.git
+cd procast-ai-automation
 
-# Start the app (runs on port 8080)
-./start.sh
+# Run the deployment script
+chmod +x deploy/exe-deploy.sh
+./deploy/exe-deploy.sh
 
-# Access at https://praneet.exe.xyz:8000/procast/
+# Your site will be available at:
+# https://your-vm-name.exe.xyz:8080/
 ```
 
-### 6. Running as Background Service
+**Manual exe.dev Deployment:**
+```bash
+# On your exe.dev VM:
+cd turbocharger-procast-demo
+python3 -m venv .venv
+source .venv/bin/activate
+pip install fastapi uvicorn jinja2
+deactivate
+
+# Set exe.dev to proxy port 8080
+ssh exe.dev share port $(hostname | cut -d. -f1) 8080
+
+# Make it public
+ssh exe.dev share set-public $(hostname | cut -d. -f1)
+
+# Start the app
+source .venv/bin/activate
+nohup uvicorn src.app:app --host 127.0.0.1 --port 8080 > app.log 2>&1 &
+deactivate
+
+# Access at: https://your-vm-name.exe.xyz:8080/
+```
+
+### 6. Running as Background Service (exe.dev)
 ```bash
 # Create systemd service for automatic startup
 sudo cp deploy/procast.service /etc/systemd/system/
