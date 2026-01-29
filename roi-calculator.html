@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clawdbot ProCAST ROI Calculator</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            padding: 3rem;
+        }
+        h1 {
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
+        }
+        .subtitle {
+            color: #666;
+            margin-bottom: 2rem;
+        }
+        .section {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        .section h3 {
+            color: #00a6fb;
+            margin-bottom: 1rem;
+        }
+        .input-group {
+            margin-bottom: 1rem;
+            display: grid;
+            grid-template-columns: 1fr 200px;
+            gap: 1rem;
+            align-items: center;
+        }
+        label {
+            color: #555;
+        }
+        input {
+            padding: 0.75rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 1rem;
+            text-align: right;
+        }
+        input:focus {
+            outline: none;
+            border-color: #00a6fb;
+        }
+        .results {
+            background: linear-gradient(135deg, #00a6fb 0%, #00e676 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+        }
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        .result-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .payback {
+            font-size: 2rem;
+            text-align: center;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 2px solid rgba(255,255,255,0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ProCAST Automation ROI Calculator</h1>
+        <p class="subtitle">See your potential savings with Clawdbot</p>
+
+        <div class="section">
+            <h3>Current Operation</h3>
+            <div class="input-group">
+                <label>Number of engineers using ProCAST:</label>
+                <input type="number" id="engineers" value="5" min="1" max="50">
+            </div>
+            <div class="input-group">
+                <label>Average simulations per engineer per week:</label>
+                <input type="number" id="simsPerWeek" value="8" min="1" max="100">
+            </div>
+            <div class="input-group">
+                <label>Hours per simulation (setup + analysis):</label>
+                <input type="number" id="hoursPerSim" value="3" min="0.5" max="10" step="0.5">
+            </div>
+            <div class="input-group">
+                <label>Engineer hourly rate (USD):</label>
+                <input type="number" id="hourlyRate" value="75" min="20" max="200">
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>Quality Impact</h3>
+            <div class="input-group">
+                <label>Current scrap rate (%):</label>
+                <input type="number" id="scrapRate" value="5" min="0" max="50" step="0.1">
+            </div>
+            <div class="input-group">
+                <label>Annual production value (USD):</label>
+                <input type="number" id="productionValue" value="10000000" min="100000" max="100000000">
+            </div>
+            <div class="input-group">
+                <label>Expected scrap reduction with AI (%):</label>
+                <input type="number" id="scrapReduction" value="30" min="10" max="50">
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>Clawdbot Investment</h3>
+            <div class="input-group">
+                <label>Implementation cost (one-time):</label>
+                <input type="number" id="implementCost" value="25000" min="10000" max="100000">
+            </div>
+            <div class="input-group">
+                <label>Monthly subscription:</label>
+                <input type="number" id="monthlyCost" value="5000" min="1000" max="20000">
+            </div>
+        </div>
+
+        <div class="results">
+            <h3 style="color: white; margin-bottom: 1.5rem;">Annual Savings</h3>
+            <div class="result-item">
+                <span>Engineering time saved:</span>
+                <span class="result-value" id="timeSaved">-</span>
+            </div>
+            <div class="result-item">
+                <span>Labor cost savings:</span>
+                <span class="result-value" id="laborSavings">-</span>
+            </div>
+            <div class="result-item">
+                <span>Scrap reduction savings:</span>
+                <span class="result-value" id="scrapSavings">-</span>
+            </div>
+            <div class="result-item">
+                <span>Total annual savings:</span>
+                <span class="result-value" id="totalSavings">-</span>
+            </div>
+            <div class="result-item">
+                <span>Annual Clawdbot cost:</span>
+                <span class="result-value" id="annualCost">-</span>
+            </div>
+            <div class="result-item" style="padding-top: 1rem; border-top: 2px solid rgba(255,255,255,0.3);">
+                <span>Net annual benefit:</span>
+                <span class="result-value" id="netBenefit">-</span>
+            </div>
+            <div class="payback">
+                Payback Period: <span id="payback">-</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function formatCurrency(num) {
+            return '$' + num.toLocaleString('en-US', { maximumFractionDigits: 0 });
+        }
+
+        function formatHours(hours) {
+            return hours.toLocaleString('en-US', { maximumFractionDigits: 0 }) + ' hours';
+        }
+
+        function calculate() {
+            // Get inputs
+            const engineers = parseFloat(document.getElementById('engineers').value) || 0;
+            const simsPerWeek = parseFloat(document.getElementById('simsPerWeek').value) || 0;
+            const hoursPerSim = parseFloat(document.getElementById('hoursPerSim').value) || 0;
+            const hourlyRate = parseFloat(document.getElementById('hourlyRate').value) || 0;
+            const scrapRate = parseFloat(document.getElementById('scrapRate').value) || 0;
+            const productionValue = parseFloat(document.getElementById('productionValue').value) || 0;
+            const scrapReduction = parseFloat(document.getElementById('scrapReduction').value) || 0;
+            const implementCost = parseFloat(document.getElementById('implementCost').value) || 0;
+            const monthlyCost = parseFloat(document.getElementById('monthlyCost').value) || 0;
+
+            // Calculate time savings (80% automation efficiency)
+            const currentHoursPerYear = engineers * simsPerWeek * hoursPerSim * 52;
+            const automationEfficiency = 0.8; // 80% time reduction
+            const hoursSaved = currentHoursPerYear * automationEfficiency;
+
+            // Calculate labor savings
+            const laborSavings = hoursSaved * hourlyRate;
+
+            // Calculate scrap savings
+            const currentScrapCost = productionValue * (scrapRate / 100);
+            const scrapSavings = currentScrapCost * (scrapReduction / 100);
+
+            // Calculate total savings and costs
+            const totalSavings = laborSavings + scrapSavings;
+            const annualCost = (monthlyCost * 12) + (implementCost / 3); // Amortize implementation over 3 years
+            const netBenefit = totalSavings - annualCost;
+
+            // Calculate payback period
+            const totalFirstYearCost = implementCost + (monthlyCost * 12);
+            const paybackMonths = totalFirstYearCost / (totalSavings / 12);
+
+            // Update display
+            document.getElementById('timeSaved').textContent = formatHours(hoursSaved);
+            document.getElementById('laborSavings').textContent = formatCurrency(laborSavings);
+            document.getElementById('scrapSavings').textContent = formatCurrency(scrapSavings);
+            document.getElementById('totalSavings').textContent = formatCurrency(totalSavings);
+            document.getElementById('annualCost').textContent = formatCurrency(annualCost);
+            document.getElementById('netBenefit').textContent = formatCurrency(netBenefit);
+            
+            if (paybackMonths < 12) {
+                document.getElementById('payback').textContent = Math.round(paybackMonths) + ' months';
+            } else {
+                document.getElementById('payback').textContent = (paybackMonths / 12).toFixed(1) + ' years';
+            }
+        }
+
+        // Add event listeners
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('input', calculate);
+        });
+
+        // Initial calculation
+        calculate();
+    </script>
+</body>
+</html>

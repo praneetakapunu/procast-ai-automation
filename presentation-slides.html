@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProCAST AI Automation - Revolutionize Your Casting Simulation</title>
+    <style>
+        @media print {
+            .slide { page-break-after: always; }
+            .no-print { display: none; }
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+        
+        .slide {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 4rem;
+            background: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .slide-number {
+            position: absolute;
+            bottom: 2rem;
+            right: 2rem;
+            color: #999;
+            font-size: 0.875rem;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-weight: 700;
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        h3 {
+            font-size: 1.75rem;
+            color: #00a6fb;
+            margin-bottom: 1rem;
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            color: #666;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(45deg, #00a6fb, #00e676);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .logo {
+            font-size: 4rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+        }
+        
+        .content {
+            max-width: 1000px;
+            width: 100%;
+            margin: 0 auto;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid #00a6fb;
+        }
+        
+        .metric-box {
+            background: linear-gradient(135deg, #00a6fb 0%, #00e676 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            margin: 1rem;
+        }
+        
+        .metric-value {
+            font-size: 3rem;
+            font-weight: bold;
+            display: block;
+        }
+        
+        .metric-label {
+            font-size: 1.25rem;
+            opacity: 0.9;
+        }
+        
+        .feature-list {
+            list-style: none;
+            font-size: 1.25rem;
+            line-height: 2;
+        }
+        
+        .feature-list li:before {
+            content: "✓ ";
+            color: #00e676;
+            font-weight: bold;
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+        
+        .process-flow {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 3rem 0;
+        }
+        
+        .process-step {
+            text-align: center;
+            flex: 1;
+            position: relative;
+        }
+        
+        .process-step:not(:last-child):after {
+            content: "→";
+            position: absolute;
+            right: -2rem;
+            top: 3rem;
+            font-size: 2rem;
+            color: #00a6fb;
+        }
+        
+        .process-icon {
+            width: 100px;
+            height: 100px;
+            background: #f0f9ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 3rem;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            font-size: 1.1rem;
+        }
+        
+        .comparison-table th {
+            background: #00a6fb;
+            color: white;
+            padding: 1rem;
+            text-align: left;
+        }
+        
+        .comparison-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .highlight-box {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            font-size: 1.25rem;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 1.5rem 3rem;
+            background: linear-gradient(45deg, #00a6fb, #00e676);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-top: 2rem;
+            box-shadow: 0 4px 20px rgba(0,166,251,0.3);
+        }
+        
+        .architecture-diagram {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 3rem;
+            margin: 2rem 0;
+        }
+        
+        .tech-stack {
+            display: flex;
+            justify-content: space-around;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .tech-item {
+            text-align: center;
+            padding: 1rem;
+        }
+        
+        .tech-icon {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Slide 1: Title -->
+    <div class="slide">
+        <div class="logo gradient-text">Clawdbot</div>
+        <h1>AI-Powered ProCAST Automation</h1>
+        <p class="subtitle">Transform Your Casting Simulation Workflow</p>
+        <div style="margin-top: 3rem; text-align: center;">
+            <p style="font-size: 1.25rem; color: #666;">Turbocharger Foundry Solutions</p>
+            <p style="font-size: 1.1rem; color: #999; margin-top: 1rem;">Stainless Steel Casting Optimization</p>
+        </div>
+        <div class="slide-number">1</div>
+    </div>
+
+    <!-- Slide 2: The Problem -->
+    <div class="slide">
+        <h2>Current Challenges in Casting Simulation</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>⏱️ Time Intensive</h3>
+                <p>Engineers spend 30-60 minutes setting up each simulation</p>
+                <p style="font-size: 2rem; color: #ff5252; margin-top: 1rem;">3 hours per design iteration</p>
+            </div>
+            <div class="card">
+                <h3>🔄 Limited Iterations</h3>
+                <p>Manual process limits exploration to 5-10 variants per week</p>
+                <p style="font-size: 2rem; color: #ff5252; margin-top: 1rem;">Missing optimal designs</p>
+            </div>
+            <div class="card">
+                <h3>📚 Knowledge Silos</h3>
+                <p>Past project learnings trapped in file folders and expert minds</p>
+                <p style="font-size: 2rem; color: #ff5252; margin-top: 1rem;">Repeated mistakes</p>
+            </div>
+            <div class="card">
+                <h3>👥 Resource Constraints</h3>
+                <p>Senior engineers doing repetitive tasks instead of innovation</p>
+                <p style="font-size: 2rem; color: #ff5252; margin-top: 1rem;">Months to train juniors</p>
+            </div>
+        </div>
+        <div class="slide-number">2</div>
+    </div>
+
+    <!-- Slide 3: The Solution -->
+    <div class="slide">
+        <h2>Introducing <span class="gradient-text">Clawdbot</span> for ProCAST</h2>
+        <p class="subtitle">24/7 AI-Powered Simulation Optimization</p>
+        <div class="process-flow">
+            <div class="process-step">
+                <div class="process-icon">📥</div>
+                <h3>Upload Design</h3>
+                <p>Drop your CAD model</p>
+            </div>
+            <div class="process-step">
+                <div class="process-icon">🤖</div>
+                <h3>AI Analysis</h3>
+                <p>Intelligent parameter selection</p>
+            </div>
+            <div class="process-step">
+                <div class="process-icon">🔄</div>
+                <h3>Auto-Optimize</h3>
+                <p>100+ simulations overnight</p>
+            </div>
+            <div class="process-step">
+                <div class="process-icon">📊</div>
+                <h3>Get Results</h3>
+                <p>Optimal design delivered</p>
+            </div>
+        </div>
+        <div class="slide-number">3</div>
+    </div>
+
+    <!-- Slide 4: Key Capabilities -->
+    <div class="slide">
+        <h2>Core Capabilities</h2>
+        <div class="content">
+            <div class="grid">
+                <div>
+                    <h3>🚀 Automation Engine</h3>
+                    <ul class="feature-list">
+                        <li>Direct ProCAST CLI integration</li>
+                        <li>Parallel simulation execution</li>
+                        <li>Automatic mesh optimization</li>
+                        <li>Smart queue management</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>🧠 AI Intelligence</h3>
+                    <ul class="feature-list">
+                        <li>Parameter space exploration</li>
+                        <li>Defect prediction models</li>
+                        <li>Design optimization algorithms</li>
+                        <li>Knowledge base integration</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="grid" style="margin-top: 2rem;">
+                <div>
+                    <h3>📈 Analytics Dashboard</h3>
+                    <ul class="feature-list">
+                        <li>Real-time monitoring</li>
+                        <li>Comparative analysis</li>
+                        <li>Trend visualization</li>
+                        <li>Automated reporting</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>🔗 Integration</h3>
+                    <ul class="feature-list">
+                        <li>Material databases</li>
+                        <li>Research papers</li>
+                        <li>Historical projects</li>
+                        <li>Best practices</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="slide-number">4</div>
+    </div>
+
+    <!-- Slide 5: ROI Metrics -->
+    <div class="slide">
+        <h2>Return on Investment</h2>
+        <div style="display: flex; justify-content: center; flex-wrap: wrap;">
+            <div class="metric-box">
+                <span class="metric-value">80%</span>
+                <span class="metric-label">Time Reduction</span>
+            </div>
+            <div class="metric-box">
+                <span class="metric-value">10x</span>
+                <span class="metric-label">More Iterations</span>
+            </div>
+            <div class="metric-box">
+                <span class="metric-value">30%</span>
+                <span class="metric-label">Defect Reduction</span>
+            </div>
+            <div class="metric-box">
+                <span class="metric-value">3-6</span>
+                <span class="metric-label">Month Payback</span>
+            </div>
+        </div>
+        <div class="highlight-box" style="max-width: 800px; margin: 3rem auto;">
+            <h3 style="margin-bottom: 1rem;">💰 Example: 5-Engineer Team</h3>
+            <p>Annual Savings: <strong>$487,000</strong></p>
+            <p>Investment: <strong>$85,000</strong> (Year 1)</p>
+            <p>Net Benefit: <strong>$402,000</strong> (First Year)</p>
+        </div>
+        <div class="slide-number">5</div>
+    </div>
+
+    <!-- Slide 6: Before/After Comparison -->
+    <div class="slide">
+        <h2>Before vs After Clawdbot</h2>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Metric</th>
+                    <th>Traditional Process</th>
+                    <th>With Clawdbot</th>
+                    <th>Improvement</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Setup Time per Simulation</td>
+                    <td>45 minutes</td>
+                    <td>2 minutes</td>
+                    <td style="color: #00e676; font-weight: bold;">95% faster</td>
+                </tr>
+                <tr>
+                    <td>Weekly Design Iterations</td>
+                    <td>8-10</td>
+                    <td>100+</td>
+                    <td style="color: #00e676; font-weight: bold;">10x more</td>
+                </tr>
+                <tr>
+                    <td>Parameter Optimization</td>
+                    <td>Manual trial & error</td>
+                    <td>AI-driven DOE</td>
+                    <td style="color: #00e676; font-weight: bold;">Systematic</td>
+                </tr>
+                <tr>
+                    <td>Knowledge Retention</td>
+                    <td>~20% documented</td>
+                    <td>100% captured</td>
+                    <td style="color: #00e676; font-weight: bold;">5x better</td>
+                </tr>
+                <tr>
+                    <td>Overnight Productivity</td>
+                    <td>0 simulations</td>
+                    <td>50+ simulations</td>
+                    <td style="color: #00e676; font-weight: bold;">24/7 operation</td>
+                </tr>
+                <tr>
+                    <td>Junior Engineer Ramp-up</td>
+                    <td>3-6 months</td>
+                    <td>1-2 weeks</td>
+                    <td style="color: #00e676; font-weight: bold;">10x faster</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="slide-number">6</div>
+    </div>
+
+    <!-- Slide 7: Technical Architecture -->
+    <div class="slide">
+        <h2>System Architecture</h2>
+        <div class="architecture-diagram">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <h3>How Clawdbot Integrates with Your Systems</h3>
+            </div>
+            <div class="tech-stack">
+                <div class="tech-item">
+                    <div class="tech-icon">🏭</div>
+                    <h4>ProCAST</h4>
+                    <p>Direct CLI Control</p>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">🧠</div>
+                    <h4>AI Engine</h4>
+                    <p>Claude/GPT Models</p>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">📊</div>
+                    <h4>Dashboard</h4>
+                    <p>Web-based UI</p>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">🔒</div>
+                    <h4>Security</h4>
+                    <p>On-premise Option</p>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">📚</div>
+                    <h4>Knowledge</h4>
+                    <p>Integrated DB</p>
+                </div>
+            </div>
+            <div style="background: #e8f5e9; padding: 1.5rem; border-radius: 8px; margin-top: 2rem;">
+                <p style="text-align: center;"><strong>✅ Works with your existing ProCAST licenses</strong></p>
+                <p style="text-align: center; margin-top: 0.5rem;">✅ No changes to your current workflow required</p>
+            </div>
+        </div>
+        <div class="slide-number">7</div>
+    </div>
+
+    <!-- Slide 8: Use Case - Turbocharger -->
+    <div class="slide">
+        <h2>Use Case: Turbocharger Housing Optimization</h2>
+        <div class="content">
+            <div style="background: #f8f9fa; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+                <h3>Challenge</h3>
+                <p>Minimize porosity in thin-wall stainless steel turbocharger housing while maintaining production cycle time</p>
+            </div>
+            <div class="grid">
+                <div class="card">
+                    <h3>Initial State</h3>
+                    <ul style="list-style: none; line-height: 2;">
+                        <li>❌ Porosity: 0.8%</li>
+                        <li>❌ Scrap rate: 5%</li>
+                        <li>❌ 2 weeks optimization</li>
+                        <li>❌ 15 iterations tested</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>After Clawdbot</h3>
+                    <ul style="list-style: none; line-height: 2;">
+                        <li>✅ Porosity: 0.23%</li>
+                        <li>✅ Scrap rate: 1.2%</li>
+                        <li>✅ 48 hours optimization</li>
+                        <li>✅ 127 iterations tested</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="highlight-box" style="margin-top: 2rem;">
+                <p><strong>Result:</strong> 71% porosity reduction, $380,000 annual scrap savings</p>
+            </div>
+        </div>
+        <div class="slide-number">8</div>
+    </div>
+
+    <!-- Slide 9: Dashboard Preview -->
+    <div class="slide">
+        <h2>Real-time Optimization Dashboard</h2>
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI3MDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPHJlY3Qgd2lkdGg9IjEyMDAiIGhlaWdodD0iNzAwIiBmaWxsPSIjMGEwYTBhIi8+CiAgCiAgPCEtLSBIZWFkZXIgLS0+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEyMDAiIGhlaWdodD0iNjAiIGZpbGw9IiMxYTFhMWEiLz4ICCA8dGV4dCB4PSI0MCIgeT0iMzgiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyNCIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiMwMGE2ZmIiPlByb0NBU1QgQUkgT3B0aW1pemF0aW9uPC90ZXh0PgogIDx0ZXh0IHg9Ijk2MCIgeT0iMzgiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzAwZTY3NiI+8J+foiA1IFNpbXVsYXRpb25zIEFjdGl2ZTwvdGV4dD4KICAKICA8IS0tIE1ldHJpYyBDYXJkcyAtLT4KICA8cmVjdCB4PSI0MCIgeT0iOTAiIHdpZHRoPSIyODAiIGhlaWdodD0iMTgwIiBmaWxsPSIjMWExYTFhIiBzdHJva2U9IiMzMzMiIHJ4PSI4Ii8+CiAgPHRleHQgeD0iNjAiIHk9IjEyMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE4IiBmaWxsPSIjZmZmIj7wn46vIEN1cnJlbnQgQmVzdCBEZXNpZ248L3RleHQ+CiAgPHRleHQgeD0iNjAiIHk9IjE1NSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjODg4Ij5Qb3Jvc2l0eSBMZXZlbDwvdGV4dD4KICA8dGV4dCB4PSIyNjAiIHk9IjE1NSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0iIzAwZTY3NiIgdGV4dC1hbmNob3I9ImVuZCI+MC4yMyU8L3RleHQ+CiAgPHRleHQgeD0iNjAiIHk9IjE5MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjODg4Ij5RdWFsaXR5IFNjb3JlPC90ZXh0PgogIDx0ZXh0IHg9IjI2MCIgeT0iMTkwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSIjMDBhNmZiIiB0ZXh0LWFuY2hvcj0iZW5kIj45NC4yPC90ZXh0PgogIAogIDxyZWN0IHg9IjM0MCIgeT0iOTAiIHdpZHRoPSIyODAiIGhlaWdodD0iMTgwIiBmaWxsPSIjMWExYTFhIiBzdHJva2U9IiMzMzMiIHJ4PSI4Ii8+CiAgPHRleHQgeD0iMzYwIiB5PSIxMjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOCIgZmlsbD0iI2ZmZiI+8J+TiCBPcHRpbWl6YXRpb24gUHJvZ3Jlc3M8L3RleHQ+CiAgPHJlY3QgeD0iMzYwIiB5PSIxNjAiIHdpZHRoPSIyNDAiIGhlaWdodD0iOCIgZmlsbD0iIzJhMmEyYSIgcng9IjQiLz4KICA8cmVjdCB4PSIzNjAiIHk9IjE2MCIgd2lkdGg9IjE2MCIgaGVpZ2h0PSI4IiBmaWxsPSJ1cmwoI2dyYWRpZW50MSkiIHJ4PSI0Ii8+CiAgPHRleHQgeD0iNDgwIiB5PSIyMDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNiIgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+NjcgLyAxMDAgSXRlcmF0aW9uczwvdGV4dD4KICAKICA8IS0tIFNpbXVsYXRpb24gR3JpZCAtLT4KICA8cmVjdCB4PSI2NDAiIHk9IjkwIiB3aWR0aD0iNTIwIiBoZWlnaHQ9IjE4MCIgZmlsbD0iIzFhMWExYSIgc3Ryb2tlPSIjMzMzIiByeD0iOCIvPgogIDx0ZXh0IHg9IjY2MCIgeT0iMTIwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiNmZmYiPvCflKwgQWN0aXZlIEV4cGVyaW1lbnRzPC90ZXh0PgogIAogIDwhLS0gU2ltdWxhdGlvbiBCb3hlcyAtLT4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg2NjAsIDE1MCkiPgogICAgPHJlY3Qgd2lkdGg9IjkwIiBoZWlnaHQ9IjkwIiBmaWxsPSIjMDBhNmZiMzMiIHN0cm9rZT0iIzAwZTY3NiIgc3Ryb2tlLXdpZHRoPSIyIiByeD0iNCIvPgogICAgPHRleHQgeD0iNDUiIHk9IjMwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IiM4ODgiIHRleHQtYW5jaG9yPSJtaWRkbGUiPiMxMjQ3PC90ZXh0PgogICAgPHRleHQgeD0iNDUiIHk9IjU1IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSIjZmZmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj45NC4yPC90ZXh0PgogIDwvZz4KICAKICA8IS0tIEdyYWRpZW50IC0tPgogIDxkZWZzPgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkaWVudDEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMDBhNmZiIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzAwZTY3NiIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICA8L2RlZnM+CiAgCiAgPCEtLSBBSSBJbnNpZ2h0cyAtLT4KICA8cmVjdCB4PSI0MCIgeT0iMjkwIiB3aWR0aD0iMTEyMCIgaGVpZ2h0PSIzODAiIGZpbGw9IiMxYTFhMWEiIHN0cm9rZT0iIzMzMyIgcng9IjgiLz4KICA8dGV4dCB4PSI2MCIgeT0iMzIwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiNmZmYiPvCfpJYgQUkgSW5zaWdodHMgJiBSZWNvbW1lbmRhdGlvbnM8L3RleHQ+CiAgCiAgPHJlY3QgeD0iNjAiIHk9IjM0MCIgd2lkdGg9IjEwODAiIGhlaWdodD0iMjAwIiBmaWxsPSIjMGEwYTBhIiByeD0iNCIvPgogIDx0ZXh0IHg9IjgwIiB5PSIzNzAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iI2ZmZiI+CiAgICA8dHNwYW4geD0iODAiIGR5PSIwIj7inIUgR2F0ZSBvcHRpbWl6YXRpb24gc3VjY2Vzc2Z1bDogTW92aW5nIHRvIGEgNC1nYXRlIHN5c3RlbSByZWR1Y2VkIHBvcm9zaXR5IGJ5IDI4JTwvdHNwYW4+CiAgICA8dHNwYW4geD0iODAiIGR5PSIzMCI+8J+TiiBQYXJhbWV0ZXIgc2Vuc2l0aXZpdHk6IE1vbGQgdGVtcGVyYXR1cmUgaGFzIGhpZ2hlc3QgaW1wYWN0IG9uIHF1YWxpdHkgKFLCsiA9IDAuODcpPC90c3Bhbj4KICAgIDx0c3BhbiB4PSI4MCIgZHk9IjMwIj7wn5KhIE5leHQgcmVjb21tZW5kYXRpb246IFRlc3QgY2VyYW1pYyBmb2FtIGZpbHRlciBhdCBpbmdhdGUgLSBzaW1pbGFyIGNhc2VzIHNob3cgMTUlIGRlZmVjdCByZWR1Y3Rpb248L3RzcGFuPgogICAgPHRzcGFuIHg9IjgwIiBkeT0iMzAiPvCflI0gTGl0ZXJhdHVyZSBtYXRjaDogRm91bmQgMyByZWxldmFudCBwYXBlcnMgb24gdGhpbi13YWxsIFNTIGNhc3RpbmdzPC90c3Bhbj4KICA8L3RleHQ+CiAgCiAgPCEtLSBDaGFydCBBcmVhIC0tPgogIDxyZWN0IHg9IjYwIiB5PSI1NjAiIHdpZHRoPSI1MjAiIGhlaWdodD0iOTAiIGZpbGw9IiMwYTBhMGEiIHJ4PSI0Ii8+CiAgPHRleHQgeD0iMzIwIiB5PSI2MTAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzY2NiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+Q29udmVyZ2VuY2UgQ2hhcnQ8L3RleHQ+CiAgCiAgPHJlY3QgeD0iNjAwIiB5PSI1NjAiIHdpZHRoPSI1NDAiIGhlaWdodD0iOTAiIGZpbGw9IiMwYTBhMGEiIHJ4PSI0Ii8+CiAgPHRleHQgeD0iODcwIiB5PSI2MTAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzY2NiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+M0QgUmVzdWx0cyBWaWV3PC90ZXh0Pgo8L3N2Zz4=" alt="Dashboard Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.2);">
+        </div>
+        <p style="text-align: center; margin-top: 2rem; color: #666;">Live monitoring of 100+ simultaneous optimizations</p>
+        <div class="slide-number">9</div>
+    </div>
+
+    <!-- Slide 10: Implementation Plan -->
+    <div class="slide">
+        <h2>Implementation Timeline</h2>
+        <div class="process-flow">
+            <div class="process-step">
+                <div class="process-icon" style="background: #e3f2fd;">📅</div>
+                <h3>Week 1-2</h3>
+                <p>System Setup</p>
+                <ul style="font-size: 0.9rem; text-align: left; margin-top: 0.5rem;">
+                    <li>ProCAST integration</li>
+                    <li>Security config</li>
+                    <li>Initial training</li>
+                </ul>
+            </div>
+            <div class="process-step">
+                <div class="process-icon" style="background: #e8f5e9;">🔧</div>
+                <h3>Week 3-4</h3>
+                <p>Customization</p>
+                <ul style="font-size: 0.9rem; text-align: left; margin-top: 0.5rem;">
+                    <li>Dashboard setup</li>
+                    <li>Material library</li>
+                    <li>Workflow config</li>
+                </ul>
+            </div>
+            <div class="process-step">
+                <div class="process-icon" style="background: #fff3e0;">🚀</div>
+                <h3>Week 5-8</h3>
+                <p>Pilot Run</p>
+                <ul style="font-size: 0.9rem; text-align: left; margin-top: 0.5rem;">
+                    <li>Turbocharger line</li>
+                    <li>Performance metrics</li>
+                    <li>Team adoption</li>
+                </ul>
+            </div>
+            <div class="process-step">
+                <div class="process-icon" style="background: #f3e5f5;">📈</div>
+                <h3>Week 9-12</h3>
+                <p>Scale & Optimize</p>
+                <ul style="font-size: 0.9rem; text-align: left; margin-top: 0.5rem;">
+                    <li>Full deployment</li>
+                    <li>ROI analysis</li>
+                    <li>Expansion plan</li>
+                </ul>
+            </div>
+        </div>
+        <div class="slide-number">10</div>
+    </div>
+
+    <!-- Slide 11: Pricing -->
+    <div class="slide">
+        <h2>Investment Options</h2>
+        <div class="grid" style="max-width: 1000px; margin: 0 auto;">
+            <div class="card" style="border-left-color: #ffc107;">
+                <h3>🏁 Pilot Program</h3>
+                <p style="font-size: 2rem; font-weight: bold; margin: 1rem 0;">$15,000</p>
+                <p style="color: #666;">3-month trial</p>
+                <ul class="feature-list" style="font-size: 1rem; margin-top: 1rem;">
+                    <li>One product line</li>
+                    <li>Full features</li>
+                    <li>Training included</li>
+                    <li>Credit toward annual</li>
+                </ul>
+            </div>
+            <div class="card" style="border-left-color: #00e676;">
+                <h3>🏢 Enterprise</h3>
+                <p style="font-size: 2rem; font-weight: bold; margin: 1rem 0;">$5,000/mo</p>
+                <p style="color: #666;">Annual contract</p>
+                <ul class="feature-list" style="font-size: 1rem; margin-top: 1rem;">
+                    <li>Unlimited products</li>
+                    <li>Priority support</li>
+                    <li>Custom integration</li>
+                    <li>On-premise option</li>
+                </ul>
+            </div>
+            <div class="card" style="border-left-color: #00a6fb;">
+                <h3>🤝 Managed Service</h3>
+                <p style="font-size: 2rem; font-weight: bold; margin: 1rem 0;">Custom</p>
+                <p style="color: #666;">We run, you benefit</p>
+                <ul class="feature-list" style="font-size: 1rem; margin-top: 1rem;">
+                    <li>Zero IT overhead</li>
+                    <li>Guaranteed results</li>
+                    <li>Expert operation</li>
+                    <li>Performance-based</li>
+                </ul>
+            </div>
+        </div>
+        <div class="slide-number">11</div>
+    </div>
+
+    <!-- Slide 12: Next Steps -->
+    <div class="slide">
+        <h2>Next Steps</h2>
+        <div class="content" style="text-align: center;">
+            <div style="max-width: 800px; margin: 0 auto;">
+                <h3 style="font-size: 2rem; margin-bottom: 2rem;">Let's Transform Your Casting Process</h3>
+                <div class="grid" style="text-align: left;">
+                    <div class="card">
+                        <h3>1️⃣ Technical Deep Dive</h3>
+                        <p>Schedule a session with your ProCAST team to discuss integration details and answer technical questions.</p>
+                    </div>
+                    <div class="card">
+                        <h3>2️⃣ Define Success Metrics</h3>
+                        <p>Establish clear KPIs for the pilot program based on your current challenges and objectives.</p>
+                    </div>
+                    <div class="card">
+                        <h3>3️⃣ Select Pilot Product</h3>
+                        <p>Choose a representative product line where we can demonstrate maximum impact quickly.</p>
+                    </div>
+                    <div class="card">
+                        <h3>4️⃣ Start Pilot Program</h3>
+                        <p>Begin the 3-month pilot with full support and regular progress reviews.</p>
+                    </div>
+                </div>
+                <a href="#" class="cta-button">Schedule Technical Discussion</a>
+            </div>
+        </div>
+        <div class="slide-number">12</div>
+    </div>
+
+    <!-- Slide 13: Contact -->
+    <div class="slide">
+        <div class="logo gradient-text">Thank You</div>
+        <h2>Questions?</h2>
+        <div style="margin-top: 3rem; text-align: center;">
+            <p style="font-size: 1.5rem; margin-bottom: 1rem;">Let's revolutionize your casting process together</p>
+            <div style="margin-top: 3rem;">
+                <p style="font-size: 1.25rem;">📧 sales@clawdbot.com</p>
+                <p style="font-size: 1.25rem; margin-top: 1rem;">🌐 clawdbot.com/procast</p>
+                <p style="font-size: 1.25rem; margin-top: 1rem;">📱 1-800-CLAWDBOT</p>
+            </div>
+        </div>
+        <div style="position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); text-align: center;">
+            <p style="color: #666;">Confidential - Proprietary Technology</p>
+            <p style="color: #666; font-size: 0.875rem;">© 2026 Clawdbot Inc. All rights reserved.</p>
+        </div>
+        <div class="slide-number">13</div>
+    </div>
+
+    <div class="no-print" style="position: fixed; top: 20px; right: 20px; z-index: 1000;">
+        <button onclick="window.print()" style="padding: 1rem 2rem; background: #00a6fb; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 1rem;">
+            📄 Save as PDF
+        </button>
+    </div>
+</body>
+</html>

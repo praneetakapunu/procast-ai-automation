@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProCAST Optimization Dashboard - Turbocharger Housing</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+        .header {
+            background: #1a1a1a;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo { 
+            font-size: 1.5rem; 
+            font-weight: bold;
+            background: linear-gradient(45deg, #00a6fb, #00e676);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .status {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        .status-item {
+            padding: 0.5rem 1rem;
+            background: #2a2a2a;
+            border-radius: 20px;
+            font-size: 0.875rem;
+        }
+        .status-active { 
+            background: #00e67633; 
+            color: #00e676;
+            border: 1px solid #00e676;
+        }
+        .container {
+            padding: 2rem;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .card {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+        .card h3 {
+            margin-bottom: 1rem;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #2a2a2a;
+        }
+        .metric:last-child { border-bottom: none; }
+        .metric-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .metric-label { color: #888; }
+        .trend-up { color: #00e676; }
+        .trend-down { color: #ff5252; }
+        .chart-placeholder {
+            background: #0a0a0a;
+            border-radius: 8px;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            margin-top: 1rem;
+        }
+        .simulation-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        .sim-box {
+            aspect-ratio: 1;
+            background: #2a2a2a;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+        .sim-box:hover { 
+            background: #3a3a3a; 
+            transform: scale(1.05);
+        }
+        .sim-id { font-size: 0.75rem; color: #888; }
+        .sim-score { font-size: 1.25rem; font-weight: bold; }
+        .sim-best {
+            background: #00e67633;
+            border: 2px solid #00e676;
+        }
+        .progress-bar {
+            background: #2a2a2a;
+            border-radius: 20px;
+            height: 8px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+        .progress-fill {
+            background: linear-gradient(90deg, #00a6fb, #00e676);
+            height: 100%;
+            width: 67%;
+            transition: width 0.5s;
+        }
+        .action-bar {
+            background: #1a1a1a;
+            border-radius: 12px;
+            padding: 1.5rem;
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            border: none;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .btn-primary {
+            background: linear-gradient(45deg, #00a6fb, #00e676);
+            color: white;
+        }
+        .btn-secondary {
+            background: #2a2a2a;
+            color: #e0e0e0;
+            border: 1px solid #444;
+        }
+        .btn:hover { transform: translateY(-2px); }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">ProCAST AI Optimization</div>
+        <div class="status">
+            <div class="status-item status-active">🟢 5 Simulations Active</div>
+            <div class="status-item">📊 127 Completed Today</div>
+            <div class="status-item">🧠 AI Optimization: ON</div>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1 style="margin-bottom: 2rem;">Turbocharger Housing - Stainless Steel 316L</h1>
+        
+        <div class="grid">
+            <div class="card">
+                <h3>🎯 Current Best Design</h3>
+                <div class="metric">
+                    <span class="metric-label">Porosity Level</span>
+                    <span class="metric-value trend-down">0.23%</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Fill Time</span>
+                    <span class="metric-value">3.7s</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Max Temperature</span>
+                    <span class="metric-value">1492°C</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Quality Score</span>
+                    <span class="metric-value trend-up">94.2</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>📈 Optimization Progress</h3>
+                <div style="margin: 1rem 0;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                        <span>Design Iterations</span>
+                        <span>67 / 100</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                </div>
+                <div class="chart-placeholder">
+                    <span>Convergence Chart</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>🔬 Active Experiments</h3>
+                <div class="simulation-grid">
+                    <div class="sim-box sim-best">
+                        <div class="sim-id">#1247</div>
+                        <div class="sim-score">94.2</div>
+                    </div>
+                    <div class="sim-box">
+                        <div class="sim-id">#1248</div>
+                        <div class="sim-score">89.1</div>
+                    </div>
+                    <div class="sim-box">
+                        <div class="sim-id">#1249</div>
+                        <div class="sim-score">91.7</div>
+                    </div>
+                    <div class="sim-box">
+                        <div class="sim-id">#1250</div>
+                        <div class="sim-score">88.3</div>
+                    </div>
+                    <div class="sim-box">
+                        <div class="sim-id">#1251</div>
+                        <div class="sim-score">⏳</div>
+                    </div>
+                    <div class="sim-box">
+                        <div class="sim-id">#1252</div>
+                        <div class="sim-score">⏳</div>
+                    </div>
+                    <div class="sim-box">
+                        <div class="sim-id">#1253</div>
+                        <div class="sim-score">⏳</div>
+                    </div>
+                    <div class="sim-box">
+                        <div class="sim-id">#1254</div>
+                        <div class="sim-score">⌛</div>
+                    </div>
+                    <div class="sim-box">
+                        <div class="sim-id">#1255</div>
+                        <div class="sim-score">⌛</div>
+                    </div>
+                    <div class="sim-box">
+                        <div class="sim-id">#1256</div>
+                        <div class="sim-score">⌛</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>🤖 AI Insights & Recommendations</h3>
+            <div style="background: #0a0a0a; padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+                <p style="margin-bottom: 0.5rem;">✅ <strong>Gate optimization successful:</strong> Moving to a 4-gate system reduced porosity by 28%</p>
+                <p style="margin-bottom: 0.5rem;">📊 <strong>Parameter sensitivity:</strong> Mold temperature has highest impact on quality (R² = 0.87)</p>
+                <p style="margin-bottom: 0.5rem;">💡 <strong>Next recommendation:</strong> Test ceramic foam filter at ingate - similar cases show 15% defect reduction</p>
+                <p>🔍 <strong>Literature match:</strong> Found 3 relevant papers on thin-wall SS castings - <a href="#" style="color: #00a6fb;">View analysis</a></p>
+            </div>
+        </div>
+
+        <div class="action-bar">
+            <button class="btn btn-primary">Generate Report</button>
+            <button class="btn btn-secondary">Export Results</button>
+            <button class="btn btn-secondary">Modify Parameters</button>
+            <button class="btn btn-secondary">View 3D Results</button>
+            <div style="margin-left: auto; color: #888;">
+                Last update: 2 minutes ago
+            </div>
+        </div>
+    </main>
+</body>
+</html>
