@@ -1,0 +1,14 @@
+[Unit]
+Description=ProCAST AI Automation Presentation Web App
+After=network.target
+
+[Service]
+Type=simple
+User=exedev
+WorkingDirectory=/home/exedev/clawd/turbocharger-procast-demo
+ExecStart=/home/exedev/clawd/turbocharger-procast-demo/venv/bin/uvicorn src.app:app --host 127.0.0.1 --port 8080
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

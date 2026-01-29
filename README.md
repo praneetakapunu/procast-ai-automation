@@ -52,6 +52,38 @@ python -m http.server 8000
 # Have sample turbocharger model ready
 ```
 
+### 4. Web Application (Like Personal-Utilities)
+```bash
+# Start the web app
+cd turbocharger-procast-demo
+./start.sh
+
+# Access at http://localhost:8080/
+# Or via nginx proxy at https://praneet.exe.xyz:8000/procast/
+```
+
+### 5. Deploy to exe.xyz Server
+```bash
+# Copy nginx config to enable proxy
+sudo cp deploy/nginx-procast.conf /etc/nginx/sites-enabled/
+
+# Reload nginx
+sudo nginx -s reload
+
+# Start the app (runs on port 8080)
+./start.sh
+
+# Access at https://praneet.exe.xyz:8000/procast/
+```
+
+### 6. Running as Background Service
+```bash
+# Create systemd service for automatic startup
+sudo cp deploy/procast.service /etc/systemd/system/
+sudo systemctl enable procast
+sudo systemctl start procast
+```
+
 ## 🎨 Presentation Flow (45 minutes total)
 
 1. **Opening** (2 min) - Problem hook
